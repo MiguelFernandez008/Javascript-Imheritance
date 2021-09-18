@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+</head>
+<body>
+    <h1>Inheritance</h1>
+    <h2>Animal</h2>
+    <p id="animal"></p>
+    <h2>Cat</h2>
+    <p id="cat"></p>
+    <script>
+        function Animal() {
+            this.type = 'animal';
+        }
+        Animal.prototype.getType = function() {
+            return this.type;
+        }
+        function Cat() {
+            Animal.call(this);
+        }
+        Cat.prototype = Object.create(Animal.prototype);
+        Cat.prototype.constructor = Cat;
+
+        let animal = new Animal();
+        let cat = new Cat();
+        cat.type = 'cat';
+        document.getElementById('animal').innerText = animal.getType();
+        document.getElementById('cat').innerText = cat.getType();
+    </script>
+</body>
+</html>
